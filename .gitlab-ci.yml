@@ -1,0 +1,20 @@
+stages:
+  - build
+  - docker
+  - deploy
+
+build:
+  stage: build
+  script:
+    - cd go-service
+    - go build ./cmd/server
+
+docker:
+  stage: docker
+  script:
+    - docker build -t devops-platform -f docker/app/Dockerfile .
+
+deploy:
+  stage: deploy
+  script:
+    - kubectl apply -f k8s/

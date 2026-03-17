@@ -1,0 +1,45 @@
+devops-platform
+│
+├── ansible/
+│   ├── inventory
+│   ├── playbook.yml
+│   └── roles/
+│       ├── docker
+│       ├── kubernetes
+│       ├── monitoring
+│       └── gitlab-runner
+│
+├── go-service/
+│
+├── docker/
+│   └── app/Dockerfile
+│
+├── k8s/
+│   ├── base
+│   │   ├── namespace.yaml
+│   │   ├── deployment.yaml
+│   │   ├── service.yaml
+│   │   └── ingress.yaml
+│   │
+│   ├── blue-green
+│   │   ├── deployment-blue.yaml
+│   │   ├── deployment-green.yaml
+│   │   └── service.yaml
+│
+├── helm/
+│   └── devops-platform
+│
+├── monitoring/
+│   ├── prometheus
+│   └── grafana
+│
+├── logging/
+│   └── elk
+│
+├── scripts/
+│   ├── build.sh
+│   ├── deploy.sh
+│   ├── blue-green-switch.sh
+│   └── rollback.sh
+│
+└── .gitlab-ci.yml
