@@ -9,7 +9,7 @@ echo "📦 Loading image into Kind..."
 kind load docker-image devops-platform:latest --name devops-cluster
 
 echo "🚀 Applying Kubernetes manifests..."
-kubectl apply -f k8s/base/
+kubectl apply -k k8s/base/
 
 echo "♻️ Restarting deployment..."
 kubectl rollout restart deployment devops-app -n devops-platform
