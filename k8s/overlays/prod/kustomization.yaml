@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+
+namePrefix: prod-
+
+replicas:
+  - name: devops-app
+    count: 3
