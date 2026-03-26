@@ -1,16 +1,31 @@
-name: DevOps CI
+name: DevOps CI/CD
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: 📥 Checkout
         uses: actions/checkout@v3
 
-      - name: Build Docker image
+      - name: 🐳 Build Docker image
         run: docker build -t devops-platform:latest docker/app/
+
+      - name: 📦 Install kind
+        run: |
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64
+          chmod +x ./kind
+          sudo mv ./kind /usr/local/bin/kind
+
+      - name: ☸️ Create cluster
+        run: kind create cluster --config kind-config.yaml
+
+      - name: 📦 Load image
+        run: kind load docker-image devops-platform:latest
+
+      - name: 🚀 Deploy
+        run: kubectl apply -f k8s/base/
