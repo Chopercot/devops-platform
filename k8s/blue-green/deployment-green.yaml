@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-app-green
+  namespace: devops-platform
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devops-app
+      version: green
+
+  template:
+    metadata:
+      labels:
+        app: devops-app
+        version: green
+
+    spec:
+      containers:
+        - name: devops-app
+          image: devops-platform:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: APP_VERSION
+              value: "green"

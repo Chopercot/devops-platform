@@ -3,15 +3,11 @@ kind: Service
 metadata:
   name: devops-service
   namespace: devops-platform
-  labels:
-    app: devops-app   # 🔥 ВАЖНО
 
 spec:
-  type: NodePort
   selector:
     app: devops-app
-
+    version: green   # 👈 ВАЖНО
   ports:
-    - name: http      # 🔥 ВАЖНО (должно быть имя!)
-      port: 80
+    - port: 80
       targetPort: 8080
