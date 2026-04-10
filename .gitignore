@@ -1,0 +1,33 @@
+
+# macOS
+.DS_Store
+
+# Linux
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Binaries
+*.exe
+*.out
+*.bin
+
+# Go
+go-service/bin/
+go-service/*.exe
+
+# Node (если появится)
+node_modules/
+
+# Docker
+*.tar
+
+# IDE
+.vscode/
+.idea/
+
+# Temp files
+tmp/
+temp/
