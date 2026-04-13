@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: devops-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+    - name: devops-alerts
+      rules:
+
+        - alert: ServiceDown
+          expr: up{job="devops-app"} == 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "DevOps app is DOWN"
+            description: "Service is not responding"
+
+        - alert: HighErrorRate
+          expr: rate(http_requests_total{status="500"}[1m]) > 0
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High error rate detected"
+            description: "There are HTTP 500 errors"
