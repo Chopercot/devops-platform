@@ -28,5 +28,6 @@ jobs:
         run: kind load docker-image devops-platform:latest
 
       - name: 🚀 Deploy
-        run: kubectl create namespace devops-platform --dry-run=client -o yaml | kubectl apply -f -
-             kubectl apply -к k8s/base/
+        run: |
+        kubectl create namespace devops-platform --dry-run=client -o yaml | kubectl apply -f -
+        kubectl apply -k k8s/base/
