@@ -29,4 +29,4 @@ jobs:
 
       - name: 🚀 Deploy
         run: kubectl create namespace devops-platform --dry-run=client -o yaml | kubectl apply -f -
-             kubectl apply -f k8s/base/
+             kubectl apply -к k8s/base/
